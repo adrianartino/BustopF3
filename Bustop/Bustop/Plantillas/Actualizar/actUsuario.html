@@ -1,0 +1,133 @@
+{% extends "Usuarios/usuariosPadre.html" %}
+{% load static %}
+
+{% block estilos %}
+<link href="https://fonts.googleapis.com/css2?family=Marvel:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block tittle %}
+Bustop
+{% endblock %}
+
+{% block content %}
+<center>
+    <form action="/actUsuario/" method="post">{% csrf_token %}
+        <div class="container">
+            <p style="font-family: 'Marvel', sans-serif; font-size: 50px;">Actualiza tus datos!</p>
+
+            <div class="row">
+
+                <div class="col-6">
+
+                    <div class="row">
+                        <div class="col-6">
+                            <label>Nombre:</label>
+                        </div>
+                        <div class="col-6">
+                            <input class="form-control" name="actusuario" type="text" value="{{nusuario}}"
+                                pattern="[A-Za-z ]{2,30}" title="Solo se permiten letras." required
+                                data-toggle="tooltip" data-placement="right">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-6">
+                            <label>Apellido:</label>
+                        </div>
+                        <div class="col-6">
+                            <input class="form-control" name="actapellido" type="text" value="{{ausuario}}"
+                                pattern="[A-Za-z ]{2,30}" title="Solo se permiten letras." required
+                                data-toggle="tooltip" data-placement="right">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-6">
+                            <label>Contraseña:</label>
+                        </div>
+                        <div class="col-6">
+                            <input class="form-control" name="actcontrasena" type="password" value="{{contra}}"
+                                pattern="[A-Za-z0-9-_ ]{5,30}" title="No se permiten caracteres especiales." required
+                                data-toggle="tooltip" data-placement="right">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-6">
+                            <label>Localidad:</label>
+                        </div>
+                        <div class="col-6">
+                            <div class="input-div one">
+                                <div class="div">
+                                    {% if lusuario == "Gomez Palacio" %}
+                                    <select class="form-control titulo" name="actlocalidad">
+                                        <option selected value="Gomez Palacio">Gómez Palacio</option>
+                                        <option value="Lerdo">Lerdo</option>
+                                        <option value="Torreon">Torreón</option>
+                                    </select>
+                                    {% endif %}
+
+                                    {% if lusuario == "Lerdo" %}
+                                    <select class="form-control titulo" name="actlocalidad">
+                                        <option value="Gomez Palacio">Gómez Palacio</option>
+                                        <option selected value="Lerdo">Lerdo</option>
+                                        <option value="Torreon">Torreón</option>
+                                    </select>
+                                    {% endif %}
+
+                                    {% if lusuario == "Torreon" %}
+                                    <select class="form-control titulo" name="actlocalidad">
+                                        <option value="Gomez Palacio">Gómez Palacio</option>
+                                        <option value="Lerdo">Lerdo</option>
+                                        <option selected value="Torreon">Torreón</option>
+                                    </select>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br>
+                    <div class="row">
+                        <div class="col-5">
+                            <label>Correo Electrónico:</label>
+                        </div>
+                        <div class="col-7">
+                            <input class="form-control" name="actcorreo" type="email" value="{{cusuario}}">
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+                <div class="col-6">
+                    <div class="img">
+                        <img src="{% static 'Img/bus2.png' %}" style="width: 55%;">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <button class="btn btn-primary" id="menu-toggle" style="background-color: #f8b400 ; border: none;">
+            Actualizar mis datos</button>
+        <br><br>
+    </form>
+    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    {% if bandera %}
+    <script type="text/javascript">
+        Swal.fire({
+            icon: 'success',
+            title: 'Wuuuuuuju!',
+            text: ' Se han actualizado tus datos con éxito.',
+            width: '40%'
+        });
+    </script>
+    {% endif %}
+
+
+</center>
+
+{% endblock %}

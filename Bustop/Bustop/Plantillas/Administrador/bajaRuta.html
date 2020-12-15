@@ -1,0 +1,74 @@
+{% extends "Administrador/padreAdmin.html" %}
+{% load static %}
+
+{% block estilos %}
+<link href="https://fonts.googleapis.com/css2?family=Marvel:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block tittle %}
+Login
+{% endblock %}
+
+{% block content %}
+<center>
+    <p class="animate__animated animate__bounceInDown" style="font-family: 'Marvel', sans-serif; font-size: 70px;">Dar
+        de baja ruta.</p>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nombre de Ruta</th>
+                    <th>N° de Camiones</th>
+                    <th>Localidad</th>
+                    <th>Tiempos</th>
+                    <th>Agregado por: </th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for ruta, admin in lista %}
+                <tr>
+                    <td>{{ruta.nombre_ruta}}</td>
+                    <td>{{ruta.ncamiones}}</td>
+                    {% if ruta.localidad == "Torreon" %}
+                        <td style="background-color: lightgreen;">{{ruta.localidad}}</td>
+                    {% endif %}
+
+                    {% if ruta.localidad == "Gomez Palacio" %}
+                    <td style="background-color: lightskyblue;">{{ruta.localidad}}</td>
+                    {% endif %}
+
+                    {% if ruta.localidad == "Lerdo" %}
+                    <td style="background-color: lightcoral;">{{ruta.localidad}}</td>
+                    {% endif %}
+                    <td>{{ruta.tiempo}}</td>
+                    <td>{{admin.nombre_admin}}</td>
+                    <td>
+                        <form action="/bajaRuta/" method="post">{% csrf_token %}
+                            <button type="submit" name="rutaEliminar" value="{{ruta.nombre_ruta}}"
+                                class="btn btn-danger">Eliminar ruta.</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    
+
+    {% if bandera %}
+    <script type="text/javascript">
+        Swal.fire({
+            icon: 'success',
+            title: 'Wuuuuuuju!',
+            text: ' Se ha eliminado la ruta satisfactoriamente!',
+            width: '40%'
+        });
+    </script>
+    {% endif %}
+
+</center>
+
+{% endblock %}

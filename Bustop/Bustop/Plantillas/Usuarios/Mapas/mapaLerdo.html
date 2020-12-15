@@ -1,0 +1,63 @@
+{% extends "Usuarios/usuariosPadre.html" %}
+{% load static %}
+
+{% block estilos %}
+<link href="https://fonts.googleapis.com/css2?family=Marvel:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block tittle %}
+Login
+{% endblock %}
+
+{% block content %}
+<center>
+    <p class="animate__animated animate__bounceInDown"  style="font-family: 'Marvel', sans-serif; font-size: 70px;">MAPA
+        DE RUTAS DE LERDO.</p>
+
+        {% for i in rutasLerdo %}
+        <p class="animate__animated animate__bounceInDown" style="font-family: 'Marvel', sans-serif; font-size: 70px;">
+            Ruta: {{i.nombre_ruta}}</p>
+        <div class="row">
+
+            <div class="col-3">
+
+                <div class="text-left">
+                    <label><i class="fas fa-map-pin "></i> Localidad: </label>
+                    <input type="text" class="form-control"  placeholder="{{i.localidad}}" readonly>
+                </div>
+
+                <div class="text-left">
+                    <label><i class="fas fa-bus"></i> Color:</label>
+                    <input style="background-color: crimson; color: white;" type="text" class="form-control"  value="{{i.color}}" readonly>
+                </div>
+
+
+                <br>
+                <div class="img">
+                    <label><i class="fas fa-bus"></i> Imagen:</label>
+                    <img src="{{i.imagen.url}}" style="width: 100%;">
+                </div>
+                <br>
+
+                <div class="text-left">
+                    <label><i class="fas fa-clock "></i> Tiempos:</label>
+                    <input type="text" class="form-control"  placeholder="{{i.tiempo}} Minutos entre cada camion." readonly>
+                </div>
+
+            </div>
+
+            <div class="col-9">
+                <iframe src="{{i.iframe}}" width="600"
+        height="450"></iframe>
+            </div>
+        </div>
+        <br>
+        {% endfor %}
+
+
+
+
+</center>
+
+{% endblock %}

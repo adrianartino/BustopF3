@@ -1,0 +1,62 @@
+{% extends "Consesionario/padreCons.html" %}
+{% load static %}
+
+{% block estilos %}
+<link href="https://fonts.googleapis.com/css2?family=Marvel:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block tittle %}
+Concesionario
+{% endblock %}
+
+{% block content %}
+<center>
+    <p class="animate__animated animate__bounceInDown" style="font-family: 'Marvel', sans-serif; font-size: 70px;">
+        Quejas y sugerencias.</p>
+
+    <div class="row">
+
+        <div class="col-6">
+
+            <div class="row">
+                <div class="col-6">
+                    <label>Nombre de Ruta:</label>
+                </div>
+                <div class="col-6">
+                    <input class="form-control" type="text" value="{{rutaEncargada}}"readonly>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-6">
+                    <label>Número de quejas:</label>
+                </div>
+                <div class="col-6">
+                    <input class="form-control" type="text" value="{{contador}}" readonly>
+                </div>
+            </div>
+            <br>
+
+        </div>
+
+        <div class="col-6">
+            <div class="img">
+                <img src="{% static 'Img/Hamburgo.jpeg' %}" style="width: 55%;">
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <form action="/verPdf/" method="post">{% csrf_token %}
+        <button type="submit" class="btn btn-primary" id="menu-toggle"
+            style="background-color: #f8b400 ; border: none;">Generar
+            Informe</button>
+    </form>
+    
+    <br> 
+    <br>
+
+</center>
+
+{% endblock %}

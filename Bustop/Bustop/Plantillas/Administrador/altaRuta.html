@@ -1,0 +1,184 @@
+{% extends "Administrador/padreAdmin.html" %}
+{% load static %}
+
+{% block estilos %}
+<link href="https://fonts.googleapis.com/css2?family=Marvel:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block tittle %}
+Login
+{% endblock %}
+
+{% block content %}
+<center>
+    <p class="animate__animated animate__bounceInDown" style="font-family: 'Marvel', sans-serif; font-size: 70px;">Dar
+        de alta ruta.</p>
+
+    <form action="/altaRuta/" method="post" enctype="multipart/form-data">{% csrf_token %}
+        <div class="row">
+
+            <div class="col-6">
+
+                <div class="row">
+                    <div class="col-6">
+                        <label>Nombre de Ruta:</label>
+                    </div>
+                    <div class="col-6">
+                        {% if bandera %}
+                        <input class="form-control" type="text" placeholder="Ingresar nombre de ruta."
+                            pattern="[A-Za-z ]{2,30}" required name="nombreRuta" title="Debe ingresar solo letras."
+                            value="{{nombreRuta}}">
+                        {% else %}
+                        <input class="form-control" type="text" placeholder="Ingresar nombre de ruta."
+                            pattern="[A-Za-z ]{2,30}" required name="nombreRuta" title="Debe ingresar solo letras.">
+                        {% endif %}
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-6">
+                        <label>Número de camiones:</label>
+                    </div>
+                    <div class="col-6">
+                        {% if bandera %}
+                        <input class="form-control" type="numer" placeholder="Ingresar n° de camiones."
+                            pattern="[0-9]{1,2}" required name="numeroCamiones" title="Solo se permiten números."
+                            value="{{numeroCamiones}}">
+                        {% else %}
+                        <input class="form-control" type="numer" placeholder="Ingresar n° de camiones."
+                            pattern="[0-9]{1,2}" required name="numeroCamiones" title="Solo se permiten números.">
+                        {% endif %}
+                        
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-6">
+                        <label>Localidad en base a color:</label>
+                    </div>
+                    <div class="col-6">
+                        <select class="form-control titulo" name="localidad">
+                            {% if bandera %}
+
+                                {% if localidad == "l" %}
+                                <option value="l">Elija localidad.</option>
+                                <option value="Torreon" id="aa" style="background-color: lightgreen;">Torreon</option>
+                                <option value="Lerdo" style="background-color: lightcoral;">Lerdo</option>
+                                <option value="Gomez Palacio" style="background-color: lightskyblue;">Gomez Palacio</option>
+                                {% endif %}
+
+                                {% if localidad == "Torreon" %}
+                                <option value="l">Elija localidad.</option>
+                                <option selected value="Torreon" id="aa" style="background-color: lightgreen;">Torreon</option>
+                                <option value="Lerdo" style="background-color: lightcoral;">Lerdo</option>
+                                <option value="Gomez Palacio" style="background-color: lightskyblue;">Gomez Palacio</option>
+                                {% endif %}
+
+                                {% if localidad == "Lerdo" %}
+                                <option value="l">Elija localidad.</option>
+                                <option value="Torreon" id="aa" style="background-color: lightgreen;">Torreon</option>
+                                <option selected value="Lerdo" style="background-color: lightcoral;">Lerdo</option>
+                                <option value="Gomez Palacio" style="background-color: lightskyblue;">Gomez Palacio</option>
+                                {% endif %}
+
+                                {% if localidad == "Gomez Palacio" %}
+                                <option value="l">Elija localidad.</option>
+                                <option value="Torreon" id="aa" style="background-color: lightgreen;">Torreon</option>
+                                <option value="Lerdo" style="background-color: lightcoral;">Lerdo</option>
+                                <option selected value="Gomez Palacio" style="background-color: lightskyblue;">Gomez Palacio</option>
+                                {% endif %}
+                                
+                            {% else %}
+                            <option value="l">Elija localidad.</option>
+                            <option value="Torreon" id="aa" style="background-color: lightgreen;">Torreon</option>
+                            <option value="Lerdo" style="background-color: lightcoral;">Lerdo</option>
+                            <option value="Gomez Palacio" style="background-color: lightskyblue;">Gomez Palacio</option>
+                            {% endif %}
+                        </select>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-6">
+                        <label>Agregar imagen de camión:</label>
+                    </div>
+                    <div class="col-6">
+                        <input type="file" name="imgruta" id="txtimagen">
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-6">
+                        <label>Tiempos aproximados en minutos:</label>
+                    </div>
+                    <div class="col-6">
+                        {% if bandera %}
+                        <input class="form-control" type="number" placeholder="20 minutos"
+                            required name="minutos" value="{{minutos}}" title="Debe ingresar solo letras.">
+                        {% else %}
+                        <input class="form-control" type="number" placeholder="20 minutos"
+                            required name="minutos" title="Debe ingresar solo letras.">
+                        {% endif %}
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-6">
+                        <label>Iframe Mapa:</label>
+                    </div>
+                    <div class="col-6">
+                        {% if bandera %}
+                        <input class="form-control" type="url" placeholder="Iframe Mapa"
+                             required name="iframeruta" pattern="{20,200}" title="Ingresar iframe" value="{{iframe}}">
+                        {% else %}
+                        <input class="form-control" type="url" placeholder="Iframe Mapa"
+                             required name="iframeruta" pattern="{20,200}" title="Ingresar iframe">
+                        {% endif %}
+                        
+                    </div>
+                </div>
+                <br>
+
+            </div>
+
+            <div class="col-6">
+                <div class="img">
+                    <img src="{% static 'Img/bus2.png' %}" style="width: 55%;">
+                </div>
+            </div>
+        </div>
+        <br>
+        <button class="btn btn-primary" id="menu-toggle" style="background-color: #f8b400 ; border: none;">Dar de alta
+            ruta</button>
+        <br><br>
+    </form>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+{% if bandera %}
+<script type="text/javascript">
+    Swal.fire({
+        icon: 'error',
+        title: 'Algo salio mal..',
+        text: ' {{textoerror}}',
+        footer: '<span style="color: green!important"> Corrige los datos para completar el registro! </span>',
+        width: '40%'
+    });
+</script>
+{% endif %}
+
+{% if bandera2 %}
+<script type="text/javascript">
+    Swal.fire({
+        icon: 'success',
+        title: 'Wuuuuuuju!',
+        text: ' Se ha dado de alta la ruta!',
+        footer: '<span style="color: green!important"> Regresar a la página para entrar! </span>',
+        width: '40%'
+    });
+</script>
+{% endif %}
+
+</center>
+
+{% endblock %}

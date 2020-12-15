@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% block estilos %}
+
+    {% endblock %}
+    
+    <link rel="stylesheet" href="{% static 'Bootstrap/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'Bootstrap/bootstrap-grid.min.css' %}">
+
+    <script src="https://kit.fontawesome.com/a81368914c.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Lobster&display=swap" rel="stylesheet">
+    <link href="signin.css" rel="stylesheet">
+
+    <title> 
+        {% block tittle %}
+
+        {% endblock %}
+    </title>
+
+</head>
+<body style="background-color: #216583;">
+
+
+    {% block content %}
+
+
+    {% endblock %}
+
+    
+
+    <script src="{% static 'Js/jquery-3.3.1.slim.min.js' %}"></script>
+    <script src="{% static 'Js/popper.min.js' %}"></script>
+    <script src="{% static 'Js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'Js/mainp1.js' %}"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+
+</body>
+</html>

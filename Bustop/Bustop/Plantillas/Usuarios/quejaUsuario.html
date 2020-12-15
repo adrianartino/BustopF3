@@ -1,0 +1,144 @@
+{% extends "Usuarios/usuariosPadre.html" %}
+{% load static %}
+
+{% block estilos %}
+<link href="https://fonts.googleapis.com/css2?family=Marvel:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block tittle %}
+Quejas - Bustop
+{% endblock %}
+
+{% block content %}
+<center>
+    <form action="/quejaUsuario/" method="post">{% csrf_token %}
+        <div class="container">
+
+            <p class="animate__animated animate__bounceInDown"
+                style="font-family: 'Marvel', sans-serif; font-size: 70px;">Quejas y sugerencias.</p>
+
+            <div  class="row">
+
+                <div class="col-6">
+
+                    <div class="row">
+                        <div class="col-6">
+                            <label >Selecciona una ruta:</label>
+                        </div>
+                        <div class="col-6">
+                            <div class="dropdown">
+                                <select class="form-control titulo" name="ruta">
+                                    <option value="l">Ruta</option>
+                                    <option disabled class="dropdown-header">Gomez Palacio</div>
+                                    {% for a in arregloGomez %}
+                                    <option value="{{a.nombre_ruta}}">{{a.nombre_ruta}}</option>
+                                    {% endfor %}
+                                    
+                                    <option disabled class="dropdown-header">Lerdo
+                                    {% for  b in arregloLerdo %}
+                                    <option value="{{b.nombre_ruta}}">{{b.nombre_ruta}}</option>
+                                    {% endfor %}
+                                    <option disabled class="dropdown-header">Torreon
+                                    {% for x in arregloTorreon %}
+                                    <option value="{{x.nombre_ruta}}">{{x.nombre_ruta}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                    </div>
+                    
+
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <label>Número de unidad:</label>
+                </div>
+                <div class="col-6">
+                    {% if bandera %}
+                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Opcional"
+                        pattern="[0-9]{1,2}" title="Ingrese un número de uno o dos dígitos." required name="unidad"
+                        value="{{unidad}}">
+                    {% else %}
+                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Ej. 12"
+                        pattern="[0-9]{1,2}" title="Ingrese un número de uno o dos dígitos." required name="unidad">
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <br>
+
+        
+        <br>
+
+
+
+
+        
+        </div>
+
+        <div class="text-left">
+            <label class="text-left">Texto de queja:</label>
+        </div>
+        {% if bandera %}
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+            placeholder="Ingrese su queja y/o sugerencia." required name="texto" >{{texto2}}</textarea>
+        {% else %}
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+            placeholder="Ingrese su queja y/o sugerencia." required name="texto"></textarea>
+        {% endif %}
+
+        <br>
+
+        <button class="btn btn-primary" style="background-color: #f8b400 ; border: none;">
+            Mandar Queja</button>
+
+        <br>
+        <br>
+
+
+
+        </div>
+    </form>
+    
+
+    <style>
+        .image-upload > input
+        {
+        display: none;
+        }
+        .image-upload img
+        {
+        width: 30px;
+        cursor: pointer;
+        }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    {% if bandera %}
+    <script type="text/javascript">
+        Swal.fire({
+            icon: 'error',
+            title: 'Algo salio mal..',
+            text: ' No has seleccionado ninguna ruta.',
+            footer: '<span style="color: green!important"> Corrige los datos para completar tu queja! </span>',
+            width: '40%'
+        });
+    </script>
+    {% endif %}
+
+    {% if bandera2 %}
+    <script type="text/javascript">
+        Swal.fire({
+            icon: 'success',
+            title: 'Wuuuuuuju!',
+            text: ' Tu queja ha sido enviada!!',
+            width: '40%'
+        });
+    </script>
+    {% endif %}
+
+</center>
+
+{% endblock %}

@@ -1,0 +1,196 @@
+{% extends "Administrador/padreAdmin.html" %}
+{% load static %}
+
+{% block estilos %}
+<link href="https://fonts.googleapis.com/css2?family=Marvel:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block tittle %}
+Login
+{% endblock %}
+
+{% block content %}
+<center>
+    <p class="animate__animated animate__bounceInDown" style="font-family: 'Marvel', sans-serif; font-size: 70px;">Dar
+        de alta Consesionario.</p>
+
+    <form action="/altaCons/" method="post">{% csrf_token %}
+        <div class="row">
+
+            <div class="col-6">
+
+                <div class="row">
+                    <div class="col-6">
+                        <label>Nombre de usuario Consesionario:</label>
+                    </div>
+                    <div class="col-6">
+                        {% if bandera %}
+                        <input class="form-control" type="text" placeholder="Consesionario123." name="usuarioCons"
+                            pattern="[A-Za-z0-9-_]{2,15}" title="Ingresa solo letras y numeros, mayor a 2 caracteres."
+                            required value="{{usuarioCons}}">
+                        {% else %}
+                        <input class="form-control" type="text" placeholder="Consesionario123." name="usuarioCons"
+                            pattern="[A-Za-z0-9-_]{2,15}" title="Ingresa solo letras y numeros, mayor a 2 caracteres."
+                            required>
+                        {% endif %}
+                        
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-6">
+                        <label>Contraseña:</label>
+                    </div>
+                    <div class="col-6">
+                        <input class="form-control" type="password" placeholder="Ingrese contraseña." name="contraCons"
+                            pattern="[A-Za-z0-9-_ ]{5,30}" title="No se permiten caracteres especiales." required>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-6">
+                        <label>Nombre Completo Consesionario:</label>
+                    </div>
+                    <div class="col-6">
+                        {% if bandera %}
+                        <input class="form-control" type="text" placeholder="Juan Liendo Palafox." name="nombreCons"
+                            pattern="[A-Za-z ]{2,30}" title="Solo se permiten letras." required value="{{nombreCons}}">
+                        {% else %}
+                        <input class="form-control" type="text" placeholder="Juan Liendo Palafox." name="nombreCons"
+                            pattern="[A-Za-z ]{2,30}" title="Solo se permiten letras." required>
+                        {% endif %}
+                        
+                    </div>
+                </div>
+
+                <br>
+                <div class="row">
+                    <div class="col-6">
+                        <label>Ruta Encargada:</label>
+                    </div>
+                    <div class="col-6">
+                        <select class="form-control titulo" name="rutaCons">
+                            <option value="l">Elija ruta.</option>
+
+                            {% if bandera %}
+                                {% for ruta in rutas %}
+                                    {% if ruta.localidad == "Torreon" %}
+                                        {% if ruta.nombre_ruta == rutaCons %}
+                                        <option selected value="{{ruta.nombre_ruta}}"
+                                            style="background-color: lightgreen;">
+                                            {{ruta.nombre_ruta}}</option>
+                                        {% else %}
+                                        <option value="{{ruta.nombre_ruta}}" style="background-color: lightgreen;">
+                                            {{ruta.nombre_ruta}}</option>
+                                        {% endif %}
+                                    {% endif %}
+
+                                    {% if ruta.localidad == "Gomez Palacio" %}
+                                        {% if ruta.nombre_ruta == rutaCons %}
+                                        <option selected value="{{ruta.nombre_ruta}}"
+                                            style="background-color: lightskyblue;">
+                                            {{ruta.nombre_ruta}}</option>
+                                        {% else %}
+                                        <option value="{{ruta.nombre_ruta}}" style="background-color: lightskyblue;">
+                                            {{ruta.nombre_ruta}}</option>
+                                        {% endif %}
+                                    {% endif %}
+
+                                    {% if ruta.localidad == "Lerdo" %}
+                                        {% if ruta.nombre_ruta == rutaCons %}
+                                        <option selected value="{{ruta.nombre_ruta}}" style="background-color: lightcoral;">
+                                            {{ruta.nombre_ruta}}</option>
+                                        {% else %}
+                                        <option value="{{ruta.nombre_ruta}}" style="background-color: lightcoral;">
+                                            {{ruta.nombre_ruta}}</option>
+                                        {% endif %}
+                                    {% endif %}
+
+                                {% endfor %}
+                            {% else %}
+                                {% for ruta in rutas %}
+                                {% if ruta.localidad == "Torreon" %}
+                                <option value="{{ruta.nombre_ruta}}" style="background-color: lightgreen;">
+                                    {{ruta.nombre_ruta}}</option>
+                                {% endif %}
+
+                                {% if ruta.localidad == "Gomez Palacio" %}
+                                <option value="{{ruta.nombre_ruta}}" style="background-color: lightskyblue;">
+                                    {{ruta.nombre_ruta}}</option>
+                                {% endif %}
+
+                                {% if ruta.localidad == "Lerdo" %}
+                                <option value="{{ruta.nombre_ruta}}" style="background-color: lightcoral;">
+                                    {{ruta.nombre_ruta}}</option>
+                                {% endif %}
+
+                                {% endfor %}
+
+                            {% endif %}
+
+                            
+                        </select>
+                    </div>
+                </div>
+
+
+                <br>
+                <div class="row">
+                    <div class="col-6">
+                        <label>Correo Electrónico:</label>
+                    </div>
+                    <div class="col-6">
+                        {% if bandera %}
+                        <input class="form-control" type="email" placeholder="Ej. consesionario@gmail.com"
+                            name="correoCons" value="{{correoCons}}" required>
+                        {% else %}
+                        <input class="form-control" type="email" required placeholder="Ej. consesionario@gmail.com"
+                            name="correoCons">
+                        {% endif %}
+                        
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-6">
+                <div class="img">
+                    <img src="{% static 'Img/bus2.png' %}" style="width: 55%;">
+                </div>
+            </div>
+        </div>
+        <br>
+        <button class="btn btn-primary" id="menu-toggle" style="background-color: #f8b400 ; border: none;">Dar de alta
+            Consesionario</button>
+        <br><br>
+    </form>
+    
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+{% if bandera %}
+<script type="text/javascript">
+    Swal.fire({
+        icon: 'error',
+        title: 'Algo salio mal..',
+        text: '{{textoerror}}',
+        footer: '<span style="color: green!important"> Corrige los datos para completar el registro! </span>',
+        width: '40%'
+    });
+</script>
+{% endif %}
+
+{% if bandera2 %}
+<script type="text/javascript">
+    Swal.fire({
+        icon: 'success',
+        title: 'Wuuuuuuju!',
+        text: ' Se ha dado de alta al consecionario!',
+        width: '40%'
+    });
+</script>
+{% endif %}
+
+
+</center>
+
+{% endblock %}

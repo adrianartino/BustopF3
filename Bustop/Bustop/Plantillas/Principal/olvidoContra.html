@@ -1,0 +1,83 @@
+{% extends "Principal/padrePrincipal.html" %}
+{% load static %}
+
+{% block estilos %}
+<link rel="stylesheet" href="{% static 'Css/recuperarcontra.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
+{% endblock %}
+
+{% block tittle %}
+Login
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="img">
+        <img src="{% static 'Img/bus2.png' %}" style="width: 70%;">
+    </div>
+    <div class="login-content">
+        <form action="/olvido/" method="POST"> {% csrf_token %}
+
+            <h3 class="title animate__animated animate__jackInTheBox"
+                style="color: #f6eedf!important; font-family: 'Lobster', cursive;">Recuperar Contraseña!</h3>
+
+            <div class="input-div one">
+                <div class="i">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="div">
+                    <input class="juanito" type="text" class="input" name="nombreusuario" placeholder="Nombre Usuario"
+                        style="color: white;"
+                        title="Ingresa nombre de usuario o correo electrónico." required data-toggle="tooltip"
+                        data-placement="right">
+                </div>
+            </div>
+
+
+            
+
+
+            <input type="submit" class="btn animate__animated animate__slideInUp" value="Recuperar Contraseña">
+            <a class="animate__animated animate__fadeIn" id="a2" href="/login/">Regresar a Login!</a>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+{% if datospersona %}
+<script type="text/javascript">
+    Swal.fire({
+        icon: 'success',
+        title: 'Wuuuuuuju!',
+        text: '{{nombre}}, te hemos mandado tu contraseña a tu correo!',
+        width: '40%'
+    });
+    
+</script>
+{% endif %}
+{% if bandera %}
+<script type="text/javascript">
+    Swal.fire({
+        icon: 'error',
+        title: 'Algo salio mal..',
+        text: ' {{error}}',
+        footer: '<span style="color: red!important"> Corrige los datos para recuperar tu contraseña! </span>',
+        width: '40%'
+    });
+</script>
+{% endif %}
+
+<!--Funciòn toogle-->
+<script>
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
+
+
+
+
+{% endblock %}

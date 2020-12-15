@@ -1,0 +1,289 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% block estilos %}
+
+    {% endblock %}
+    <link rel="stylesheet" href="{% static 'Css/Usuarios/padreUsuarios.css' %}">
+    <link rel="stylesheet" href="{% static 'Bootstrap/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'Bootstrap/bootstrap-grid.min.css' %}">
+
+    <script src="https://kit.fontawesome.com/a81368914c.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Lobster&display=swap" rel="stylesheet">
+    <link href="signin.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Marvel:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
+
+    <title>
+        {% block tittle %}
+
+        {% endblock %}
+    </title>
+
+</head>
+
+<body style="background-color: whitesmoke;">
+
+    <!--Inicio Wrapper-->
+    <div class="d-flex" id="wrapper">
+
+        <!-- SIDEBAR -->
+        <div class="bg-light border-right" id="sidebar-wrapper">
+
+            <div class="sidebar-heading text-center font-weight-bold" style="background-color: #585B5E!important; 
+              color: #f8b400;"> Usuario: {{nombreusuario}} </div>
+            <div style="background-color: #585B5E!important;">
+                <center>
+                    <i class="fas fa-user-circle" style="font-size:80px; color: white;"></i>
+                    <br><br>
+                </center>
+            </div>
+            <div class="list-group list-group-flush">
+
+
+                {% if principal %}
+                <a href="/principalUsuario/" id="b2" class="list-group-item list-group-item-action bg-light 
+        animated slideInUp "
+                style="background-color: #f8b400!important;" >
+                    <i style="color:white!important;"class="fa fa-home " id="icono1"></i><strong> Página Principal</strong></a>
+                {% else %}
+                <a href="/principalUsuario/" id="b2" class="list-group-item list-group-item-action bg-light 
+        animated slideInUp ">
+                    <i class="fa fa-home " id="icono1"></i> Página Principal</a>
+                {% endif %}
+
+                {% if buscarin %}
+                <a href="/buscarRuta/" id="b2" class="list-group-item list-group-item-action bg-light 
+        animated slideInUp "
+                style="background-color: #f8b400!important;">
+                    <i style="color:white!important;"  class="fa fa-search " id="icono1"></i> Buscar Ruta</a>
+                {% else %}
+                <a href="/buscarRuta/" id="b2" class="list-group-item list-group-item-action bg-light 
+        animated slideInUp ">
+                    <i class="fa fa-search " id="icono1"></i> Buscar Ruta</a>
+                {% endif %}
+                
+                {% if buscarubi %}
+                <a href="/ubicacionRuta/" id="b3" class="list-group-item list-group-item-action bg-light
+        animated slideInUp "
+                style="background-color: #f8b400!important;">
+                    <i style="color:white!important;"  class="fas fa-map-marked-alt" id="icono2"></i> Buscar por
+                    ubicación</a>
+                {% else %}
+                <a href="/ubicacionRuta/" id="b3" class="list-group-item list-group-item-action bg-light
+        animated slideInUp ">
+                    <i class="fas fa-map-marked-alt" id="icono2"></i> Buscar por ubicación</a>
+                {% endif %}
+                
+
+                {% if rutasTorreon %}
+                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle collapsed 
+                        list-group-item list-group-item-action bg-light" id="b4"><i class="fas fa-bus" id="icono3"></i>
+                    Mapa de rutas</a>
+                <ul class="list-unstyled " id="homeSubmenu">
+                    <li>
+                        <a href="/mapaRutaTorreon/" id="b3" class="list-group-item list-group-item-action bg-light
+                            animated slideInUp " style="background-color: #f8b400!important;">
+                            <i style="color:white!important;"  class="fas fa-map-marker-alt" id="icono2"></i> Torreón</a>
+                    </li>
+                    <li>
+                        <a href="/mapaRutaGomez/" id="b3" class="list-group-item list-group-item-action bg-light
+                            animated slideInUp ">
+                            <i class="fas fa-map-marker-alt" id="icono2"></i> Gómez Palacio</a>
+                    </li>
+                    <li>
+                        <a href="/mapaRutaLerdo/" id="b3" class="list-group-item list-group-item-action bg-light
+                            animated slideInUp ">
+                            <i class="fas fa-map-marker-alt" id="icono2"></i> Lerdo</a>
+                    </li>
+                </ul>
+                {% elif rutasGomez %}
+                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle collapsed 
+                        list-group-item list-group-item-action bg-light" id="b4"><i class="fas fa-bus" id="icono3"></i>
+                    Mapa de rutas</a>
+                <ul class="list-unstyled " id="homeSubmenu">
+                    <li>
+                        <a href="/mapaRutaTorreon/" id="b3" class="list-group-item list-group-item-action bg-light
+                            animated slideInUp ">
+                            <i class="fas fa-map-marker-alt" id="icono2"></i> Torreón</a>
+                    </li>
+                    <li>
+                        <a href="/mapaRutaGomez/" id="b3" class="list-group-item list-group-item-action bg-light
+                            animated slideInUp " style="background-color: #f8b400!important;">
+                            <i style="color:white!important;"  class="fas fa-map-marker-alt" id="icono2"></i> Gómez
+                            Palacio</a>
+                    </li>
+                    <li>
+                        <a href="/mapaRutaLerdo/" id="b3" class="list-group-item list-group-item-action bg-light
+                            animated slideInUp ">
+                            <i class="fas fa-map-marker-alt" id="icono2"></i> Lerdo</a>
+                    </li>
+                </ul>
+                {% elif rutasLerdo %}
+                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle collapsed 
+                        list-group-item list-group-item-action bg-light" id="b4"><i class="fas fa-bus" id="icono3"></i>
+                    Mapa de rutas</a>
+                <ul class="list-unstyled " id="homeSubmenu">
+                    <li>
+                        <a href="/mapaRutaTorreon/" id="b3" class="list-group-item list-group-item-action bg-light
+                            animated slideInUp ">
+                            <i class="fas fa-map-marker-alt" id="icono2"></i> Torreón</a>
+                    </li>
+                    <li>
+                        <a href="/mapaRutaGomez/" id="b3" class="list-group-item list-group-item-action bg-light
+                            animated slideInUp ">
+                            <i class="fas fa-map-marker-alt" id="icono2"></i> Gómez Palacio</a>
+                    </li>
+                    <li>
+                        <a href="/mapaRutaLerdo/" id="b3" class="list-group-item list-group-item-action bg-light
+                            animated slideInUp " style="background-color: #f8b400!important;">
+                            <i style="color:white!important;"  class="fas fa-map-marker-alt" id="icono2"></i> Lerdo</a>
+                    </li>
+                </ul>
+                {% else %}
+                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle collapsed 
+                        list-group-item list-group-item-action bg-light" id="b4"><i class="fas fa-bus" id="icono3"></i>
+                    Mapa de rutas</a>
+                <ul class="list-unstyled collapse" id="homeSubmenu">
+                    <li>
+                        <a href="/mapaRutaTorreon/" id="b3" class="list-group-item list-group-item-action bg-light
+                            animated slideInUp ">
+                            <i class="fas fa-map-marker-alt" id="icono2"></i> Torreón</a>
+                    </li>
+                    <li>
+                        <a href="/mapaRutaGomez/" id="b3" class="list-group-item list-group-item-action bg-light
+                            animated slideInUp ">
+                            <i class="fas fa-map-marker-alt" id="icono2"></i> Gómez Palacio</a>
+                    </li>
+                    <li>
+                        <a href="/mapaRutaLerdo/" id="b3" class="list-group-item list-group-item-action bg-light
+                            animated slideInUp ">
+                            <i class="fas fa-map-marker-alt" id="icono2"></i> Lerdo</a>
+                    </li>
+                </ul>
+                {% endif %}
+                    
+                {% if quejita %}
+                <a href="/quejaUsuario/" id="b5" class="list-group-item list-group-item-action bg-light
+        animated slideInUp " style="background-color: #f8b400!important;">
+                    <i style="color:white!important;"  class="fas fa-exclamation-circle" id="icono4">
+                    </i> RealizarQueja</a>
+                {% else %}
+                <a href="/quejaUsuario/" id="b5" class="list-group-item list-group-item-action bg-light
+        animated slideInUp ">
+                    <i class="fas fa-exclamation-circle" id="icono4"></i> Realizar Queja</a>
+                {% endif %}
+                
+            </div>
+
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- CONTENIDO DE PAGINA -->
+        <div id="page-content-wrapper">
+
+
+            <!-- Sidebar -->
+            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom"
+                style="background-color: #363636!important">
+                <button class="btn btn-primary" id="menu-toggle"
+                    style="background-color: #f8b400 ; border: none;">Menú</button>
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- NAVBAR ARRIBA -->
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+
+                        <li class="nav-item active">
+                            <a class="nav-link" 
+                                style="color:white; font-family: 'Marvel', sans-serif; font-size: 18px;"
+                                data-toggle="tooltip" data-placement="left" title="Contactanos!"><i
+                                    class="fa fa-envelope " style="font-size:22px"></i> Contacto: 
+                                    bustopconnection@gmail.com <span
+                                    class="sr-only">(current)</span></a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" style="color:white; font-family: 'Marvel', sans-serif; font-size: 18px;"
+                                href="/actUsuario/"
+                                data-toggle="tooltip" data-placement="bottom"
+                                title="Actualiza rus datos!">
+                                <i class="fas fa-wrench" style="font-size:22px"></i>
+                                Actualizar mis datos</a>
+                        </li>
+
+
+                        <li class="nav-item">
+                            <a class="nav-link" style="color:white; font-family: 'Marvel', sans-serif; font-size: 18px;"
+                                href="/salir/"
+                                data-toggle="tooltip" data-placement="bottom" title="Salir de Bustop!">
+                                <i class="fas fa-sign-out-alt" style="font-size:20px"></i> Salir</a>
+                        </li>
+                        
+
+                    </ul>
+                </div>
+                <!-- FIN NAVBAR ARRIBA -->
+            </nav>
+
+            <!-- CONTENIDO DE PAGINA -->
+            <div class="container mt-5" style="position: relative;  width: 90%; ">
+                {% block content %}
+
+
+                {% endblock %}
+
+            </div>
+
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+
+    <script src="{% static 'Js/jquery-3.3.1.slim.min.js' %}"></script>
+    <script src="{% static 'Js/popper.min.js' %}"></script>
+    <script src="{% static 'Js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'Js/mainp1.js' %}"></script>
+
+    <script>
+        //Funcion Wrapper
+        $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+        });
+
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+
+    <!--Estilos-->
+    <style>
+        #menu-toggle:hover {
+            color: black;
+            font: bold;
+            background-color: whitesmoke !important;
+        }
+
+        .nav-link:hover {
+            color: #f8b400 !important;
+        }
+    </style>
+
+</body>
+
+</html>

@@ -1,0 +1,132 @@
+{% extends "Consesionario/padreCons.html" %}
+{% load static %}
+
+{% block estilos %}
+<link href="https://fonts.googleapis.com/css2?family=Marvel:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block tittle %}
+Concesionario
+{% endblock %}
+
+{% block content %}
+<center>
+
+    <form action="/actCons/" method="post">{% csrf_token %}
+        <div class="container">
+            <p style="font-family: 'Marvel', sans-serif; font-size: 50px;">Actualiza tus datos!</p>
+
+
+            <div class="row">
+
+                <div class="col-6">
+
+                    <div class="row">
+                        <div class="col-6">
+                            <label>Nombre Completo:</label>
+                        </div>
+                        <div class="col-6">
+                            <input class="form-control" type="text" placeholder="Juan ." name="nombreCons"
+                                pattern="[A-Za-z ]{2,30}" title="Solo se permiten letras." required
+                                value="{{nombre}}">
+                        </div>
+                    </div>
+                    <br>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <label>Ruta Encargada:</label>
+                        </div>
+                        <div class="col-6">
+                            <div class="input-div one">
+                                <div class="div">
+                                    <select class="form-control titulo" name="rutaCons">
+
+                                        {% for ruta in rutas %}
+                                            {% if ruta.localidad == "Torreon" %}
+                                                {% if ruta.nombre_ruta == rutac %}
+                                                <option selected value="{{ruta.nombre_ruta}}"
+                                                    style="background-color: lightgreen;">
+                                                    {{ruta.nombre_ruta}}</option>
+                                                {% else %}
+                                                <option value="{{ruta.nombre_ruta}}" style="background-color: lightgreen;">
+                                                    {{ruta.nombre_ruta}}</option>
+                                                {% endif %}
+                                            {% endif %}
+
+                                            {% if ruta.localidad == "Gomez Palacio" %}
+                                                {% if ruta.nombre_ruta == rutac %}
+                                                <option selected value="{{ruta.nombre_ruta}}"
+                                                    style="background-color: lightskyblue;">
+                                                    {{ruta.nombre_ruta}}</option>
+                                                {% else %}
+                                                <option value="{{ruta.nombre_ruta}}" style="background-color: lightskyblue;">
+                                                    {{ruta.nombre_ruta}}</option>
+                                                {% endif %}
+                                            {% endif %}
+
+                                            {% if ruta.localidad == "Lerdo" %}
+                                                {% if ruta.nombre_ruta == rutac %}
+                                                <option selected value="{{ruta.nombre_ruta}}"
+                                                    style="background-color: lightcoral;">
+                                                    {{ruta.nombre_ruta}}</option>
+                                                {% else %}
+                                                <option value="{{ruta.nombre_ruta}}" style="background-color: lightcoral;">
+                                                    {{ruta.nombre_ruta}}</option>
+                                                {% endif %}
+                                            {% endif %}
+
+                                        {% endfor %}
+
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br>
+                    <div class="row">
+                        <div class="col-6">
+                            <label>Correo Electrónico:</label>
+                        </div>
+                        <div class="col-6">
+                            <input class="form-control" type="email" placeholder="Ingresa tu nuevo correo." name="correoCons"
+                            value="{{correo}}">
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="col-6">
+                    <div class="img">
+                        <img src="{% static 'Img/bus2.png' %}" style="width: 55%;">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <button class="btn btn-primary" id="menu-toggle" style="background-color: #f8b400 ; border: none;">
+            Actualizar mis datos</button>
+        <br><br>
+    </form>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    {% if actualizado %}
+    <script type="text/javascript">
+        Swal.fire({
+            icon: 'success',
+            title: 'Wuuuuuuju!',
+            text: ' Se han actualizado tus datos con éxito.',
+            width: '40%'
+        });
+    </script>
+    {% endif %}
+
+    
+
+
+</center>
+
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends "Administrador/padreAdmin.html" %}
+{% load static %}
+
+{% block estilos %}
+<link href="https://fonts.googleapis.com/css2?family=Marvel:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block tittle %}
+Login
+{% endblock %}
+
+{% block content %}
+<center>
+    <p class="animate__animated animate__bounceInDown" style="font-family: 'Marvel', sans-serif; font-size: 70px;">Lista de usuarios.</p>
+    <form action="/verPdfUsuarios/" method="post">{% csrf_token %}
+        <button class="btn btn-primary" id="menu-toggle" style="background-color: #f8b400 ; border: none;">Descargar
+            Lista.</button>
+    </form>
+    <br><br>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nombre de usuario</th>
+                <th>Nombre </th>
+                <th>Apellido</th>
+                <th>Localidad</th>
+                <th>Correo </th>
+                <th>Fecha de nacimiento</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for usuario in listaUsuarios %}
+            <tr>
+                <td>{{usuario.usuario}}</td>
+                <td>{{usuario.nombre}}</td>
+                <td>{{usuario.apellido}}</td>
+                <td>{{usuario.localidad}}</td>
+                <td>{{usuario.correo}}</td>
+                <td>{{usuario.nacimiento}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+
+    {% if bandera %}
+    <script type="text/javascript">
+        Swal.fire({
+            icon: 'success',
+            title: 'Wuuuuuuju!',
+            text: ' Se ha eliminado el consecionario satisfactoriamente!',
+            width: '40%'
+        });
+    </script>
+    {% endif %}
+
+</center>
+
+{% endblock %}

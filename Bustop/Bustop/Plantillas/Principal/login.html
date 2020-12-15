@@ -1,0 +1,96 @@
+{% extends "Principal/padrePrincipal.html" %}
+{% load static %}
+
+{% block estilos %}
+    <link rel="stylesheet" href="{% static 'Css/padrePrincipal.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
+{% endblock %}
+
+{% block tittle %}
+Login
+{% endblock %}
+
+{% block content %}
+<div id="pinchediv"style="background-color: #216583;">
+    <div class="container" >
+        <div class="img animate__animated animate__bounce">
+            <img src="{% static 'Img/bus2.png' %}" style="width: 70%;">
+        </div>
+        <div class="login-content">
+            <form action="/login/" method="post">{% csrf_token %}
+
+                <img src="{% static 'Img/bus.png' %}" style="width: 40%; height: 70%;">
+                <br>
+                <h3 class="title animate__animated animate__jackInTheBox"
+                    style="color: #f6eedf!important; font-family: 'Lobster', cursive;">Bienvenido!</h3>
+                <div class="input-div one">
+                    <div class="i">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="div">
+                        
+                        {% if bandera2 %}
+                        <input type="text" class="juanito" name="nombreusuario" value="{{nombreusuario}}"
+                            placeholder="Usuario" required title="Ingresa tu nombre de usuario" style="color: white;"
+                            data-toggle="tooltip"
+                            data-placement="right">
+                        {% else %}
+                        <input type="text"  class="juanito" name="nombreusuario" placeholder="Usuario"
+                            required title="Ingresa tu nombre de usuario" style="color: white;"
+                            data-toggle="tooltip"
+                            data-placement="right">
+                        {% endif %}
+                        <style>
+                            ::placeholder { /* Firefox, Chrome, Opera */
+                            color: white;
+                            }
+                        </style>
+                    </div>
+                </div>
+                
+                <div class="input-div pass">
+                    <div class="i">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="div">
+                        <h5>Contraseña</h5>
+                        <input type="password" class="input" name="contrausuario" required
+                            title="Ingresa tu contraseña" data-toggle="tooltip"
+                            data-placement="right">
+                    </div>
+                </div>
+                <a id="a3" href="/olvido/">Olvide la contraseña.</a>
+                <input type="submit" class="btn animate__animated animate__slideInUp" value="Login">
+                <a class="animate__animated animate__fadeIn"  id="a2" href="/registro/">No tienes cuenta? Registrate!</a>
+
+            </form>
+            
+        </div>
+        
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+
+{% if bandera %}
+<script type="text/javascript">
+    Swal.fire({
+        icon: 'error',
+        title: 'Algo salio mal..',
+        text: ' {{error}}',
+        footer: '<span style="color: red!important"> Corrige tus datos para ingresar a Bustop! </span>',
+        width: '40%'
+    });
+</script>
+{% endif %}
+
+<!--Funciòn toogle-->
+<script>
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
+
+{% endblock %}

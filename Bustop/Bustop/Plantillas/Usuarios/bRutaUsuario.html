@@ -1,0 +1,97 @@
+{% extends "Usuarios/usuariosPadre.html" %}
+{% load static %}
+
+{% block estilos %}
+<link href="https://fonts.googleapis.com/css2?family=Marvel:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block tittle %}
+Buscar - Bustop
+{% endblock %}
+
+{% block content %}
+<center>
+    <div class="container">
+        {% if encontro %}
+        <p  style="font-family: 'Marvel', sans-serif; font-size: 70px;">
+            Introduce la ruta que
+            buscas!</p>
+        {% else %}
+        <p class="animate__animated animate__bounceInDown" style="font-family: 'Marvel', sans-serif; font-size: 70px;">
+            Introduce la ruta que
+            buscas!</p>
+        {% endif %}
+        
+
+        <form action="/buscarRuta/" method="post">{% csrf_token %}
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Buscar por nombre de ruta, color del camión o ciudad." name="busqueda" data-toggle="tooltip"
+                    data-placement="left" title="Busca una ruta!">
+                <div class="input-group-btn">
+                    <button class="btn "  type="submit"
+                        style="background-color: #216583!important;"><i class="fa fa-search"></i></button>
+                </div>
+            </div>
+        </form>
+
+
+
+        {% if encontro %}
+        <div class="container mt-4" id="resultadobusqueda" >
+                <h1 style=" font-family: 'Marvel', sans-serif;  font-size:400%!important;">
+                    Resultados de búsqueda!</h1>
+                <p style="font-family: 'Oswald', sans-serif; font-size:125%!important;">Busqueda realizada:
+                    {{busqueda}}</p>
+
+                <table class="table table-hover animate__animated animate__bounceIn"
+                    style="font-family: 'Oswald', sans-serif; font-size:125%!important;">
+                    <thead>
+                        <tr class="table-active">
+                            <th scope="col">Nombre de la Ruta</th>
+                            <th scope="col">Color</th>
+                            <th scope="col">Ciudad</th>
+                        </tr>
+                    </thead>
+
+
+                    <tbody>
+                        {% for b in busquedaRutas %}
+                        <tr class="table-warning">
+                            <td>
+                                <form action="/infoRuta/" method="post">{% csrf_token %}
+                                    <button type="submit" name="nomreRuta" 
+                                        value="{{b.nombre_ruta}}">{{b.nombre_ruta}}</button>
+                                </form>
+                            </td>
+                            <td>{{b.color}}</td>
+                            <td>{{b.localidad}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <br>
+        </div>
+
+        {% endif %}
+
+        {% if noencontro %}
+        <div class="container mt-4"  id="resultadobusqueda">
+            <h1 class="animate__animated animate__bounceIn"
+                style=" font-family: 'Marvel', sans-serif;  font-size:400%!important;">
+                No hay coincidencias con tu búsqueda!</h1>
+            <p style="font-family: 'Oswald', sans-serif; font-size:125%!important;">Busqueda realizada:
+                {{busqueda}}</p>
+            <br>
+        </div>
+        {% endif %}
+
+
+
+        
+
+
+    </div>
+</center>
+
+{% endblock %}

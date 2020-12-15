@@ -1,0 +1,209 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% block estilos %}
+
+    {% endblock %}
+    <link rel="stylesheet" href="{% static 'Css/Usuarios/padreUsuarios.css' %}">
+    <link rel="stylesheet" href="{% static 'Bootstrap/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'Bootstrap/bootstrap-grid.min.css' %}">
+
+    <script src="https://kit.fontawesome.com/a81368914c.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Lobster&display=swap" rel="stylesheet">
+    <link href="signin.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Marvel:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
+
+    <title>
+        {% block tittle %}
+
+        {% endblock %}
+    </title>
+
+</head>
+
+<body style="background-color: whitesmoke;">
+
+    <!--Inicio Wrapper-->
+    <div class="d-flex" id="wrapper">
+
+        <!-- SIDEBAR -->
+        <div class="bg-light border-right" id="sidebar-wrapper">
+
+            <div class="sidebar-heading text-center font-weight-bold" style="background-color: #585B5E!important; 
+              color: #f8b400;"> Administrador: 
+              <br>{{nombreusuario}}</div>
+              
+            <div style="background-color: #585B5E!important;">
+                <center>
+                    <img class="animate__animated animate__zoomInUp"  src="{% static 'Img/admin2.png' %}" >
+                    <br><br>
+                </center>
+            </div>
+            <div class="list-group list-group-flush">
+                {% if principal %}
+                <a href="/principalAdmin/" id="b2" class="list-group-item list-group-item-action bg-light 
+        animated slideInUp " style="background-color: #f8b400!important;">
+                    <i style="color:white!important;" class="fa fa-home " id="icono1"></i> Página Principal</a>
+                {% else %}
+                <a href="/principalAdmin/"  id="b2" class="list-group-item list-group-item-action bg-light 
+        animated slideInUp ">
+                    <i class="fa fa-home " id="icono1"></i> Página Principal</a>
+                {% endif %}
+                
+
+                {% if alru %}
+                <a href="/altaRuta/" id="b2" class="list-group-item list-group-item-action bg-light 
+        animated slideInUp " style="background-color: #f8b400!important;">
+                    <i style="color:white!important;" class="fa fa-bus " id="icono2"></i> Dar de alta Ruta</a>
+                {% else %}
+                <a href="/altaRuta/" id="b2" onmouseout="hover()" class="list-group-item list-group-item-action bg-light 
+        animated slideInUp ">
+                    <i class="fa fa-bus " id="icono2"></i> Dar de alta Ruta</a>
+                {% endif %}
+                
+
+                {% if alco %}
+                <a href="/altaCons/" id="b3" class="list-group-item list-group-item-action bg-light
+        animated slideInUp " style="background-color: #f8b400!important;">
+                    <i style="color:white!important;" class="fas fa-user-plus" id="icono3"></i> Dar de alta
+                    Consesionario</a>
+                {% else %}
+                <a href="/altaCons/" id="b3" class="list-group-item list-group-item-action bg-light
+        animated slideInUp ">
+                    <i class="fas fa-user-plus" id="icono3"></i> Dar de alta Consesionario</a>
+                {% endif %}
+                
+
+                {% if baru %}
+                <a href="/bajaRuta/" id="b3" class="list-group-item list-group-item-action bg-light
+        animated slideInUp " style="background-color: #f8b400!important;">
+                    <i style="color:white!important;" class="fas fa-minus" id="icono4"></i> Dar de baja Ruta</a>
+                {% else %}
+                <a href="/bajaRuta/" id="b3" class="list-group-item list-group-item-action bg-light
+        animated slideInUp ">
+                    <i class="fas fa-minus" id="icono4"></i> Dar de baja Ruta</a>
+                {% endif %}
+
+                {% if baco %}
+                <a href="/bajaCons/" id="b3" class="list-group-item list-group-item-action bg-light
+        animated slideInUp " style="background-color: #f8b400!important;">
+                    <i style="color:white!important;" class="fas fa-user-times " id="icono4"></i> Dar de baja
+                    Consesionario</a>
+                {% else %}
+                <a href="/bajaCons/" id="b3" class="list-group-item list-group-item-action bg-light
+        animated slideInUp ">
+                    <i class="fas fa-user-times " id="icono4"></i> Dar de baja Consesionario</a>
+                {% endif %}
+
+                {% if usuarios %}
+                <a href="/usuariosAdmin/" id="b3" class="list-group-item list-group-item-action bg-light
+        animated slideInUp " style="background-color: #f8b400!important;">
+                    <i style="color:white!important;" class="fas fa-user " id="icono4"></i> Ver usuarios</a>
+                {% else %}
+                <a href="/usuariosAdmin/" id="b3" class="list-group-item list-group-item-action bg-light
+        animated slideInUp ">
+                    <i class="fas fa-user " id="icono4"></i> Ver usuarios</a>
+                {% endif %}
+
+            </div>
+
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- CONTENIDO DE PAGINA -->
+        <div id="page-content-wrapper">
+
+
+            <!-- Sidebar -->
+            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom"
+                style="background-color: #363636!important">
+                <button class="btn btn-primary" id="menu-toggle"
+                    style="background-color: #f8b400 ; border: none;">Menú</button>
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- NAVBAR ARRIBA -->
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+
+
+
+                        <li class="nav-item">
+                            <a class="nav-link" style="color:white; font-family: 'Marvel', sans-serif; font-size: 18px;"
+                                href="/salirAdmin/" data-toggle="tooltip"
+                                data-placement="bottom" title="Salir de Bustop!">
+                                <i class="fas fa-sign-out-alt" style="font-size:20px"></i> Salir</a>
+                        </li>
+
+
+                    </ul>
+                </div>
+                <!-- FIN NAVBAR ARRIBA -->
+            </nav>
+
+            <!-- CONTENIDO DE PAGINA -->
+            <div class="container mt-5" style="position: relative;  width: 90%; ">
+                {% block content %}
+
+
+                {% endblock %}
+
+            </div>
+
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+
+    <script src="{% static 'Js/jquery-3.3.1.slim.min.js' %}"></script>
+    <script src="{% static 'Js/popper.min.js' %}"></script>
+    <script src="{% static 'Js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'Js/mainp1.js' %}"></script>
+
+    <script>
+        //Funcion Wrapper
+        $("#menu-toggle").click(function (e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+
+    <script>
+        function hover() {
+            document.getElementById("icono13").style.color = "red";
+        }
+    </script>
+    <!--Estilos-->
+    <style>
+        #menu-toggle:hover {
+            color: black;
+            font: bold;
+            background-color: whitesmoke !important;
+        }
+
+        .nav-link:hover {
+            color: #f8b400 !important;
+        }
+    </style>
+
+</body>
+
+</html>

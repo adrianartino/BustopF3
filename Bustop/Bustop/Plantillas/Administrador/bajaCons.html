@@ -1,0 +1,65 @@
+{% extends "Administrador/padreAdmin.html" %}
+{% load static %}
+
+{% block estilos %}
+<link href="https://fonts.googleapis.com/css2?family=Marvel:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block tittle %}
+Login
+{% endblock %}
+
+{% block content %}
+<center>
+    <p class="animate__animated animate__bounceInDown" style="font-family: 'Marvel', sans-serif; font-size: 70px;">Dar
+        de baja Consecionario.</p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nombre de usuario</th>
+                <th>Nombre completo</th>
+                <th>Ruta Encargada</th>
+                <th>Correo</th>
+                <th>Agregado por: </th>
+                <th>Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for conse, admin in lista %}
+            <tr>
+                <td>{{conse.conce}}</td>
+                <td>{{conse.nombre_conce}}</td>
+                <td>{{conse.nombre_ruta}}</td>
+                <td>{{conse.correo}}</td>
+
+                <td>{{admin.nombre_admin}}</td>
+                <td>
+                    <form action="/bajaCons/" method="post">{% csrf_token %}
+                        <button type="submit" name="consEliminar" value="{{conse.conce}}"
+                            class="btn btn-danger">Eliminar Consecionario.</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+
+    {% if bandera %}
+    <script type="text/javascript">
+        Swal.fire({
+            icon: 'success',
+            title: 'Wuuuuuuju!',
+            text: ' Se ha eliminado el consecionario satisfactoriamente!',
+            width: '40%'
+        });
+    </script>
+    {% endif %}
+
+</center>
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "Consesionario/padreCons.html" %}
+{% load static %}
+
+{% block estilos %}
+<link href="https://fonts.googleapis.com/css2?family=Marvel:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block tittle %}
+Concesionario
+{% endblock %}
+
+{% block content %}
+<center>
+    <br>
+    <br>
+    <br>
+    <div class="img">
+        <img class="animate__animated animate__zoomInUp" src="{% static 'Img/bus3.png' %}" style="width: 50%;">
+        <p class="animate__animated animate__fadeInUp animate__delay-1s"
+            style="font-family: 'Anton', sans-serif; font-size: 20px;">Te llevamos a donde quieras.</p>
+    </div>
+    <div class="container">
+        <p class="animate__animated animate__fadeInUp animate__delay-1s animate__slower"
+            style="font-family: 'Marvel', sans-serif; font-size: 50px;">Bienvenido {{nombre}} a Bustop!</p>
+    </div>
+
+
+</center>
+
+{% endblock %}

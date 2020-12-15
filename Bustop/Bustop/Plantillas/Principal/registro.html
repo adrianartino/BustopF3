@@ -1,0 +1,237 @@
+{% extends "Principal/padrePrincipal.html" %}
+{% load static %}
+
+{% block estilos %}
+<link rel="stylesheet" href="{% static 'Css/registro.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
+{% endblock %}
+
+{% block tittle %}
+Login
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="img">
+        <img src="{% static 'Img/bus2.png' %}" style="width: 70%;">
+    </div>
+    <div class="login-content">
+        <form action="/registro/" method="post"> {% csrf_token %}
+
+            <h3 class="title animate__animated animate__jackInTheBox"
+                style="color: #f6eedf!important; font-family: 'Lobster', cursive;">Registrate!</h3>
+
+            <div class="input-div one">
+                <div class="i">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="div">
+                    {% if nombreusuario %}
+                    <input class="juanito" type="text" class="input" name="nombreusuario" placeholder="Nombre Usuario"
+                        style="color: white;" pattern="[A-Za-z0-9-_]{2,15}"
+                        title="Ingresa solo letras y numeros, mayor a 2 caracteres." required value="{{nombreusuario}}"
+                        data-toggle="tooltip" data-placement="right">
+                    {% else %}
+                    <input class="juanito" type="text" class="input" name="nombreusuario" placeholder="Nombre Usuario"
+                        style="color: white;" pattern="[A-Za-z0-9-_]{2,15}"
+                        title="Ingresa solo letras y numeros, mayor a 2 caracteres." required data-toggle="tooltip"
+                        data-placement="right">
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="input-div one">
+                <div class="i">
+                    <i class="fas fa-pen"></i>
+                </div>
+                <div class="div">
+                    {% if nombre %}
+                    <input class="juanito" type="text" class="input" name="nombre" placeholder="Nombre(s)"
+                        style="color: white;" pattern="[A-Za-z ]{2,30}" value="{{nombre}}"
+                        title="Solo se permiten letras." required data-toggle="tooltip" data-placement="right">
+                    {% else %}
+                    <input class="juanito" type="text" class="input" name="nombre" placeholder="Nombre(s)"
+                        style="color: white;" pattern="[A-Za-z ]{2,30}" title="Solo se permiten letras." required
+                        data-toggle="tooltip" data-placement="right">
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="input-div one">
+                <div class="i">
+                    <i class="fas fa-pen"></i>
+                </div>
+                <div class="div">
+                    {% if apellido %}
+                    <input class="juanito" type="text" class="input" name="apellido" placeholder="Apellido(s)"
+                        style="color: white;" pattern="[A-Za-z ]{2,30}" value="{{apellido}}"
+                        title="Solo se permiten letras." required data-toggle="tooltip" data-placement="right">
+                    {% else %}
+                    <input class="juanito" type="text" class="input" name="apellido" placeholder="Apellido(s)"
+                        style="color: white;" pattern="[A-Za-z ]{2,30}" title="Solo se permiten letras." required
+                        data-toggle="tooltip" data-placement="right">
+                    {% endif %}
+                </div>
+            </div>
+            <div class="input-div pass">
+                <div class="i">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <div class="div">
+                    {% if contra %}
+                    <input class="juanito" type="password" class="input" name="contra" placeholder="Contraseña"
+                        style="color: white;" pattern="[A-Za-z0-9-_ ]{5,30}" value="{{contra}}"
+                        title="Debe de incluir números y letras." required data-toggle="tooltip"
+                        data-placement="right">
+                    {% else %}
+                    <input class="juanito" type="password" class="input" name="contra" placeholder="Contraseña"
+                        style="color: white;" pattern="[A-Za-z0-9-_ ]{5,30}"
+                        title="Debe de incluir números y letras." required data-toggle="tooltip"
+                        data-placement="right">
+                    {% endif %}
+                </div>
+            </div>
+            <div class="input-div pass">
+                <div class="i">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <div class="div">
+                    {% if cc %}
+                    <input class="juanito" type="password" class="input" name="contraconfirmada"
+                        placeholder="Confirmar Contraseña" style="color: white;" pattern="[A-Za-z0-9-_ ]{5,30}"
+                        value="{{cc}}" title="Las contraseñas deben de coincidir" required data-toggle="tooltip"
+                        data-placement="right">
+                    {% else %}
+                    <input class="juanito" type="password" class="input" name="contraconfirmada"
+                        placeholder="Confirmar Contraseña" style="color: white;" pattern="[A-Za-z0-9-_ ]{5,30}"
+                        title="Las contraseñas deben de coincidir" required data-toggle="tooltip"
+                        data-placement="right">
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="input-div one">
+                <div class="i">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div class="div">
+                    {% if localidad %}
+                    {% if localidad == "l" %}
+                    <select class="form-control titulo" name="localidad">
+                        <option value="l">Localidad</option>
+                        <option value="Gomez Palacio">Gómez Palacio</option>
+                        <option value="Lerdo">Lerdo</option>
+                        <option value="Torreon">Torreón</option>
+                    </select>
+                    {% endif %}
+
+                    {% if localidad == "Gomez Palacio" %}
+                    <select class="form-control titulo" name="localidad">
+                        <option value="l">Localidad</option>
+                        <option selected value="Gomez Palacio">Gómez Palacio</option>
+                        <option value="Lerdo">Lerdo</option>
+                        <option value="Torreon">Torreón</option>
+                    </select>
+                    {% endif %}
+
+                    {% if localidad == "Lerdo" %}
+                    <select class="form-control titulo" name="localidad">
+                        <option value="l">Localidad</option>
+                        <option value="Gomez Palacio">Gómez Palacio</option>
+                        <option selected value="Lerdo">Lerdo</option>
+                        <option value="Torreon">Torreón</option>
+                    </select>
+                    {% endif %}
+
+                    {% if localidad == "Torreon" %}
+                    <select class="form-control titulo" name="localidad">
+                        <option value="l">Localidad</option>
+                        <option value="Gomez Palacio">Gómez Palacio</option>
+                        <option value="Lerdo">Lerdo</option>
+                        <option selected value="Torreon">Torreón</option>
+                    </select>
+                    {% endif %}
+
+                    {% else %}
+                    <select class="form-control titulo" name="localidad">
+                        <option value="l">Localidad</option>
+                        <option value="Gomez Palacio">Gómez Palacio</option>
+                        <option value="Lerdo">Lerdo</option>
+                        <option value="Torreon">Torreón</option>
+                    </select>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="input-div one">
+                <div class="i">
+                    <i class="fas fa-at"></i>
+                </div>
+                <div class="div">
+                    {% if correo %}
+                    <input class="juanito" pattern="{1,100}" type="email" class="input" name="correo" placeholder="Correo Electrónico"
+                        style="color: white;" value="{{correo}}">
+                    {% else %}
+                    <input class="juanito" pattern="{1,100}" type="email" class="input" name="correo" placeholder="Correo Electrónico"
+                        style="color: white;">
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="input-div one">
+                <div class="i">
+                    <i class="fas fa-birthday-cake"></i>
+                </div>
+                <div class="div">
+                    {% if nacimiento %}
+                    <input type="date" id="start" name="nacimiento" value="{{nacimiento}}" min="1960-01-01"
+                        max="2020-04-29">
+                    {% else %}
+                    <input type="date" id="start" name="nacimiento" value="fecha1" min="1960-01-01" max="2020-04-29">
+                    {% endif %}
+                </div>
+            </div>
+
+            <input type="submit" class="btn animate__animated animate__slideInUp" value="Registrarse">
+            <a class="animate__animated animate__fadeIn" id="a2" href="/login/">Regresar a Login!</a>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+{% if bandera %}
+<script type="text/javascript">
+    Swal.fire({
+        icon: 'error',
+        title: 'Algo salio mal..',
+        text: ' {{textoerror}}',
+        footer: '<span style="color: green!important"> Corrige los datos para completar el registro! </span>',
+        width: '40%'
+    });
+</script>
+{% elif bandera == False %}
+<script type="text/javascript">
+    Swal.fire({
+        icon: 'success',
+        title: 'Wuuuuuuju!',
+        text: ' Registro completado! {{nombreusuario}}',
+        footer: '<span style="color: green!important"> Regresar a la página para entrar! </span>',
+        width: '40%'
+    });
+</script>
+{% endif %}
+
+<!--Funciòn toogle-->
+<script>
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
+
+
+
+
+{% endblock %}

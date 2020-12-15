@@ -1,0 +1,89 @@
+{% extends "Usuarios/usuariosPadre.html" %}
+{% load static %}
+
+{% block estilos %}
+<link href="https://fonts.googleapis.com/css2?family=Marvel:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block tittle %}
+Ruta - Bustop
+{% endblock %}
+
+{% block content %}
+<center>
+    <div class="container">
+        
+        <p class="animate__animated animate__bounceInDown" style="font-family: 'Marvel', sans-serif; font-size: 70px;">
+            Ruta: {{nombreRuta}}.</p>
+
+        <div class="row">
+
+            <div class="col-6">
+
+                <div class="row">
+                    <div class="col-6">
+                        <label>Nombre de Ruta:</label>
+                    </div>
+                    <div class="col-6">
+                        <input class="form-control" type="text" placeholder="{{nombreRuta}}." readonly>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-6">
+                        <label>Número de camiones:</label>
+                    </div>
+                    <div class="col-6">
+                        <input class="form-control" type="text" placeholder="{{ncamiones}} camiones." readonly>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-6">
+                        <label>Localidad:</label>
+                    </div>
+                    <div class="col-6">
+                        <input class="form-control" type="text" placeholder="{{localidad}}." readonly>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-6">
+                        <label>Color de la ruta:</label>
+                    </div>
+                    <div class="col-6">
+                        <input class="form-control" type="text" placeholder="{{color}}" readonly>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-6">
+                <div class="img">
+                    <img src="{{imagen.url}}" style="width: 55%;">
+                </div>
+            </div>
+        </div>
+
+        <p style="font-family: 'Marvel', sans-serif; font-size: 40px;">Mapa de ruta.</p>
+        <div class="img">
+            <iframe src="{{iframe}}" width="640"
+                height="480"></iframe>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-6">
+                <label>Tiempos de llegada del camión en la ruta:</label>
+            </div>
+            <div class="col-6">
+                <input class="form-control" type="text" placeholder="{{tiempo}} minutos entre cada autobús." readonly>
+            </div>
+        </div>
+        <br>
+
+
+    </div>
+</center>
+
+{% endblock %}
